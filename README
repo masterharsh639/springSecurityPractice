@@ -1,0 +1,12 @@
+pom.xml – brings in Spring Security and JJWT (0.11.x).
+application.properties – stores your JWT secret and token expiration.
+JwtService – generates and validates JWTs (signs with HS256 using a Base64 secret).
+JwtAuthFilter – runs before username/password auth; extracts the Authorization: Bearer <token> header, validates token, and sets the SecurityContext.
+SecurityConfig – defines:
+SecurityFilterChain (HTTP security rules),
+AuthenticationManager / AuthenticationProvider,
+PasswordEncoder (BCrypt),
+in this minimal demo, an in-memory user so you can run immediately. You can swap to DB later.
+AuthController – /auth/login endpoint to authenticate a username/password and return a JWT.
+HelloController – a sample protected API (/api/hello) to prove the token works.
+dto/* – request/response payloads for login.
